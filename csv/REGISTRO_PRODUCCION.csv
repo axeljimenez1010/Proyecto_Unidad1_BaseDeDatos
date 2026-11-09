@@ -1,0 +1,7 @@
+id_registro,fecha_registro,cantidad_produccion,nivel_abundancia,precio_promedio,ciclo_agricola,id_producto,id_sector
+1,2024-05-15,4500.00,Alto,320.00,Cosecha Invierno,1,1
+2,2024-06-10,2100.50,Alto,800.00,Cosecha Verano,2,2
+3,2024-08-22,150.00,Medio,4500.00,Recoleccion,3,3
+4,2024-03-30,850.00,Alto,600.00,Cosecha Continua,4,4
+5,2024-07-05,340.00,Medio,1200.00,Cosecha Verano,5,1
+6,2024-01-20,0.00,Escaso,0.00,Siembra,1,4

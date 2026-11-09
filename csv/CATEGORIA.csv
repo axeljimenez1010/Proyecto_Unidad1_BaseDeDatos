@@ -1,0 +1,6 @@
+id_categoria,nombre,descripcion,tipo_comercio
+1,Cereales,Granos secos como maiz y arroz,Consumo Interno
+2,Cultivos Industriales,Productos para procesamiento como el cafe,Exportacion
+3,Hortalizas,Vegetales de ciclo corto,Consumo Interno
+4,Leguminosas,Granos en vaina como mani y frejol,Mixto
+5,Frutas Tropicales,Frutas de zonas calidas,Consumo Interno
