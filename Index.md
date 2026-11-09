@@ -1,8 +1,17 @@
-# INFORME DE FIN DE UNIDAD
 
-## Sistema de Inteligencia y Estadística Agrícola para la Provincia de Loja
+<p align="center">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMy8h0-if_AU5roBFbgcnCNAoX2Hw1osOZBe6sZMgkKfI3QFk04_K6eYCr&s=10" alt="Logo de la Universidad" width="150">
+</p>
 
-**FEIRNNR - Carrera de Computación**
+<h1 align="center">INFORME DE FIN DE UNIDAD</h1>
+
+<h2 align="center">
+  Sistema de Inteligencia y Estadística Agrícola para la Provincia de Loja
+</h2>
+
+<p align="center">
+  <strong>FEIRNNR - Carrera de Computación</strong>
+</p>
 
 ---
 
@@ -42,18 +51,20 @@ Modelar bases de datos de problemas reales, bajo los principios de solidaridad, 
 
 ## 2. Contexto del problema
 
-*Agregar aquí el contexto del problema.*
+La provincia de Loja cuenta con una importante actividad agrícola distribuida entre sus diferentes cantones y sectores. Sin embargo, la información relacionada con la producción de cultivos y los precios del mercado se encuentra dispersa y poco organizada. La falta de una base de datos centralizada dificulta relacionar las cantidades producidas con las variaciones de precios, lo que impide identificar con claridad si los aumentos responden a problemas de producción, condiciones climáticas o factores relacionados con la comercialización.
+
+Esta situación afecta tanto a los agricultores como a los consumidores y a las instituciones que necesitan información confiable para tomar decisiones. Por ello, surge la necesidad de diseñar una base de datos relacional que permita organizar la información de los cantones, sectores, categorías de productos, períodos de cosecha y registros de producción. De esta manera, será posible almacenar y consultar datos sobre las cantidades producidas y los precios promedio, facilitando el análisis de la actividad agrícola y contribuyendo a una mejor comprensión del comportamiento del mercado en la provincia de Loja.
 
 ## 3. Objetivos
 
 ### 3.1. Objetivo General
 
-*Agregar aquí el objetivo general.*
+Diseñar e implementar una base de datos relacional para gestionar la información estadística y productiva del sector agrícola de la provincia de Loja, mediante el modelado lógico y físico, con la finalidad de analizar la disponibilidad de alimentos y su impacto en la fluctuación de precios regionales.
 
 ### 3.2. Objetivos Específicos
 
-- Elaborar el diagrama Entidad-Relación y el modelo relacional.
-- Construir el esquema físico en SQL utilizando DDL y DML.
+- Elaborar el diagrama Entidad-Relación y el modelo relacional para estructurar la jerarquía territorial, los catálogos botánicos y los registros de producción agrícola, garantizando la normalización de los datos.
+- Construir el esquema físico en SQL utilizando sentencias DDL para la creación de tablas con sus respectivas restricciones, y comandos DML para la inserción de datos que permitan ejecutar y validar consultas de álgebra relacional.
 
 ---
 
