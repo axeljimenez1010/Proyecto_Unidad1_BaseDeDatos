@@ -78,9 +78,21 @@ Diseñar e implementar una base de datos relacional para gestionar la informaci�
 
 <p style="text-align:center; font-size:12px;">Figura 1. Diagrama Entidad-Relacion del Sistema de Inteligencia y Estadística Agrícola Regional </p>
 
+[Ver Diagrama Entidad-Relación en draw.io](https://app.diagrams.net/#G13HBIkJWYOhQfYAtQVE5QYrDr9T17xFt1#%7B%22pageId%22%3A%22YsC8HymE1Lbt-HbOpI8D%22%7D)
+
 ### 4.2. Modelo Relacional
 
-#### 4.2.1. Tabla Categoría
+### 4.2.1 Diagrama Relacional
+
+<p align="left">
+  <img src="https://drive.google.com/uc?id=1ozULqDx4n_E7JebDNMNzQwRzHsMAWaZD" alt="Descripción" width="70%">
+</p>
+
+<p style="text-align:center; font-size:12px;">Figura 2. Diagrama Relacional del Sistema de Inteligencia y Estadística Agrícola Regional. </p>
+
+[Ver Diagrama Relacional en draw.io](https://app.diagrams.net/#G13HBIkJWYOhQfYAtQVE5QYrDr9T17xFt1#%7B%22pageId%22%3A%22aridOOU2unH2YhFbUsur%22%7D)
+
+#### 4.2.2. Tabla Categoría
 
 | Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
 |---|---|---|---|
@@ -89,7 +101,7 @@ Diseñar e implementar una base de datos relacional para gestionar la informaci�
 | descripcion | VARCHAR(255) | - | - |
 | tipo_comercio | VARCHAR(50) | - | - |
 
-#### 4.2.2. Tabla Cantón
+#### 4.2.3. Tabla Cantón
 
 | Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
 |---|---|---|---|
@@ -97,7 +109,7 @@ Diseñar e implementar una base de datos relacional para gestionar la informaci�
 | nombre | VARCHAR(100) | - | - |
 | zona_provincial | VARCHAR(50) | - | - |
 
-#### 4.2.3. Tabla Sector
+#### 4.2.4. Tabla Sector
 
 | Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
 |---|---|---|---|
@@ -106,7 +118,7 @@ Diseñar e implementar una base de datos relacional para gestionar la informaci�
 | tipo_clima | VARCHAR(50) | - | - |
 | id_canton | INT | **FK** | CANTON(id_canton) |
 
-#### 4.2.4. Tabla Producto
+#### 4.2.5. Tabla Producto
 
 | Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
 |---|---|---|---|
@@ -115,14 +127,14 @@ Diseñar e implementar una base de datos relacional para gestionar la informaci�
 | variedad | VARCHAR(100) | - | - |
 | id_categoria | INT | **FK** | CATEGORIA(id_categoria) |
 
-#### 4.2.5. Tabla Meses_Cosecha
+#### 4.2.6. Tabla Meses_Cosecha
 
 | Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
 |---|---|---|---|
 | id_producto | INT | **PK / FK** | PRODUCTO(id_producto) |
 | mes | VARCHAR(20) | **PK** | - |
 
-#### 4.2.6. Tabla Registro_Produccion
+#### 4.2.7. Tabla Registro_Produccion
 
 | Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
 |---|---|---|---|
@@ -134,14 +146,6 @@ Diseñar e implementar una base de datos relacional para gestionar la informaci�
 | ciclo_agricola | VARCHAR(50) | - | - |
 | id_producto | INT | **FK** | PRODUCTO(id_producto) |
 | id_sector | INT | **FK** | SECTOR(id_sector) |
-
-### 4.3. Diagrama Relacional
-
-<p align="left">
-  <img src="https://drive.google.com/uc?id=1ozULqDx4n_E7JebDNMNzQwRzHsMAWaZD" alt="Descripción" width="70%">
-</p>
-
-<p style="text-align:center; font-size:12px;">Figura 2. Diagrama Relacional del Sistema de Inteligencia y Estadística Agrícola Regional. </p>
 
 ---
 
