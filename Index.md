@@ -72,41 +72,76 @@ Diseñar e implementar una base de datos relacional para gestionar la informaci�
 
 ### 4.1. Modelo Entidad-Relación (E-R)
 
-*Insertar el diagrama Entidad-Relación.*
+<p align="left">
+  <img src="https://drive.google.com/uc?id=1OIWA-ts1wC48HzXD9DCvDzKWMYJ_DHTE" alt="Descripción" width="70%">
+</p>
 
-![Diagrama Entidad-Relación](diagramas/entidad-relacion.png)
+<p style="text-align:center; font-size:12px;">Figura 1. Diagrama Entidad-Relacion del Sistema de Inteligencia y Estadística Agrícola Regional </p>
 
 ### 4.2. Modelo Relacional
 
 #### 4.2.1. Tabla Categoría
 
-*Agregar estructura de la tabla.*
+| Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
+|---|---|---|---|
+| id_categoria | INT | **PK** | - |
+| nombre | VARCHAR(100) | - | - |
+| descripcion | VARCHAR(255) | - | - |
+| tipo_comercio | VARCHAR(50) | - | - |
 
 #### 4.2.2. Tabla Cantón
 
-*Agregar estructura de la tabla.*
+| Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
+|---|---|---|---|
+| id_canton | INT | **PK** | - |
+| nombre | VARCHAR(100) | - | - |
+| zona_provincial | VARCHAR(50) | - | - |
 
 #### 4.2.3. Tabla Sector
 
-*Agregar estructura de la tabla.*
+| Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
+|---|---|---|---|
+| id_sector | INT | **PK** | - |
+| nombre | VARCHAR(100) | - | - |
+| tipo_clima | VARCHAR(50) | - | - |
+| id_canton | INT | **FK** | CANTON(id_canton) |
 
 #### 4.2.4. Tabla Producto
 
-*Agregar estructura de la tabla.*
+| Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
+|---|---|---|---|
+| id_producto | INT | **PK** | - |
+| nombre | VARCHAR(100) | - | - |
+| variedad | VARCHAR(100) | - | - |
+| id_categoria | INT | **FK** | CATEGORIA(id_categoria) |
 
 #### 4.2.5. Tabla Meses_Cosecha
 
-*Agregar estructura de la tabla.*
+| Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
+|---|---|---|---|
+| id_producto | INT | **PK / FK** | PRODUCTO(id_producto) |
+| mes | VARCHAR(20) | **PK** | - |
 
 #### 4.2.6. Tabla Registro_Produccion
 
-*Agregar estructura de la tabla.*
+| Atributo | Tipo de Dato | Tipo de Clave | Referencia (FK) |
+|---|---|---|---|
+| id_registro | INT | **PK** | - |
+| fecha_registro | DATE | - | - |
+| cantidad_produccion | DECIMAL(10,2) | - | - |
+| nivel_abundancia | VARCHAR(50) | - | - |
+| precio_promedio | DECIMAL(10,2) | - | - |
+| ciclo_agricola | VARCHAR(50) | - | - |
+| id_producto | INT | **FK** | PRODUCTO(id_producto) |
+| id_sector | INT | **FK** | SECTOR(id_sector) |
 
 ### 4.3. Diagrama Relacional
 
-*Insertar el diagrama relacional.*
+<p align="left">
+  <img src="https://drive.google.com/uc?id=1ozULqDx4n_E7JebDNMNzQwRzHsMAWaZD" alt="Descripción" width="70%">
+</p>
 
-![Diagrama Relacional](diagramas/diagrama-relacional.png)
+<p style="text-align:center; font-size:12px;">Figura 2. Diagrama Relacional del Sistema de Inteligencia y Estadística Agrícola Regional. </p>
 
 ---
 
@@ -117,19 +152,40 @@ Diseñar e implementar una base de datos relacional para gestionar la informaci�
 #### Tabla Categoría
 
 ```sql
--- Agregar código CREATE TABLE CATEGORIA
+CREATE TABLE CATEGORIA (
+    id_categoria  INT          NOT NULL AUTO_INCREMENT,
+    nombre        VARCHAR(100) NOT NULL,
+    descripcion   VARCHAR(255),
+    tipo_comercio VARCHAR(50),
+    PRIMARY KEY (id_categoria)
+);
+
 ```
 
 #### Tabla Cantón
 
 ```sql
--- Agregar código CREATE TABLE CANTON
+CREATE TABLE CANTON (
+    id_canton       INT          NOT NULL AUTO_INCREMENT,
+    nombre          VARCHAR(100) NOT NULL,
+    zona_provincial VARCHAR(50)  NOT NULL,
+    PRIMARY KEY (id_canton)
+);
+
 ```
 
 #### Tabla Sector
 
 ```sql
--- Agregar código CREATE TABLE SECTOR
+CREATE TABLE SECTOR (
+    id_sector  INT          NOT NULL AUTO_INCREMENT,
+    nombre     VARCHAR(100) NOT NULL,
+    tipo_clima VARCHAR(50)  NOT NULL,
+    id_canton  INT          NOT NULL,
+    PRIMARY KEY (id_sector),
+    FOREIGN KEY (id_canton) REFERENCES CANTON(id_canton)
+);
+
 ```
 
 ### 5.2. Inserción de Datos (DML)
