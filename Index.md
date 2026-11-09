@@ -244,6 +244,20 @@ INSERT INTO SECTOR (nombre, tipo_clima, id_canton) VALUES
  
 ---
 
+### 5.3. Archivos CSV
+
+Los datos utilizados en el proyecto se encuentran organizados en archivos CSV, correspondientes a las tablas de la base de datos.
+
+| N.º | Tabla | Archivo CSV |
+|---|---|---|
+| 1 | Categoría | [Ver CSV](csv/CATEGORIA.csv) |
+| 2 | Cantón | [Ver CSV](csv/CANTON.csv) |
+| 3 | Sector | [Ver CSV](csv/SECTOR.csv) |
+| 4 | Producto | [Ver CSV](csv/PRODUCTO.csv) |
+| 5 | Meses de cosecha | [Ver CSV](csv/MES_COSECHA.csv) |
+| 6 | Registro de producción | [Ver CSV](csv/REGISTRO_PRODUCCION.csv) |
+
+
 ## 6. Consultas de álgebra relacional y SQL
 
 ### 6.1. Ejercicio 1 — Selección (σ)
