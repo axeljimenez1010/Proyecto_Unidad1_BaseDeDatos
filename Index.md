@@ -238,6 +238,10 @@ INSERT INTO SECTOR (nombre, tipo_clima, id_canton) VALUES
 
 ```
 
+### Script Inserciones 
+
+ [📥 Descargar script de inserción de datos](Inserts_ProyectoU1.sql)
+ 
 ---
 
 ## 6. Consultas de álgebra relacional y SQL
