@@ -283,6 +283,12 @@ WHERE nivel_abundancia = 'Alto' AND precio_promedio > 500;
 
 Se obtendrán los registros completos (todas sus columnas) correspondientes a las cosechas de Arroz en Macará y Cebolla en Catamayo, que son los únicos que cumplen ambas condiciones económicas y de volumen simultáneamente.
 
+<h4>Resultado de la Consulta 1 — Selección</h4>
+
+<p align="center">
+  <img src="capturas/consulta1_relational.png" width="800">
+</p>
+
 ---
 
 ### 6.2. Ejercicio 2 — Proyección (π) y Producto Cartesiano (×)
@@ -311,6 +317,12 @@ CROSS JOIN CATEGORIA S2;
 
 Se proyectarán exactamente 25 pares de datos, mostrando columnas que relacionan cada ubicación geográfica con cada tipo de cultivo posible (ej. "Zapotillo – Frutas Tropicales").
 
+<h4>Resultado de la Consulta 2 — Proyección</h4>
+
+<p align="center">
+  <img src="capturas/consulta2_relational.png" width="800">
+</p>
+
 ---
 
 ### 6.3. Ejercicio 3 — Selección y Proyección (σ + π)
@@ -337,6 +349,12 @@ WHERE P.id_categoria = 1;
 **Resultado esperado:**
 
 El conjunto de resultados filtrará las columnas de control y devolverá únicamente los tres atributos solicitados para las instancias que cumplan la condición lógica (Arroz y Maíz Duro).
+
+<h4>Resultado de la Consulta 3 — Selección y Proyección</h4>
+
+<p align="center">
+  <img src="capturas/consulta3_relational.png" width="800">
+</p>
 
 ---
 
@@ -365,6 +383,12 @@ WHERE S1.tipo_clima = 'Cálido Seco';
 **Resultado esperado:**
 
 Se resolverán las relaciones de claves foráneas para devolver únicamente los nombres de los cultivos sembrados en dicho microclima (el Maíz en Garza Real y la Cebolla en Casanga).
+
+<h4>Resultado de la Consulta 4 — JOIN</h4>
+
+<p align="center">
+  <img src="capturas/consulta4_relational.png" width="800">
+</p>
 
 ---
 
@@ -401,6 +425,12 @@ WHERE NOT EXISTS (
 **Resultado esperado:**
 
 Se proyectará el identificador del producto (id_producto = 1), correspondiente al Maíz Duro, validando matemáticamente que es el único cultivo registrado de manera simultánea en todos los sectores que componen la relación intermedia S1 (sectores 1 y 4).
+
+<h4>Resultado de la Consulta 5 — División</h4>
+
+<p align="center">
+  <img src="capturas/consulta5_relational.png" width="800">
+</p>
 
 ---
 
