@@ -192,6 +192,14 @@ CREATE TABLE SECTOR (
 
 ```
 
+## 🗄️ Base de Datos
+
+La base de datos fue desarrollada en MySQL Workbench y contiene las tablas, relaciones y registros correspondientes al proyecto.
+
+### Archivos SQL
+
+- [📥 Descargar base de datos completa](ProyectoU1_bd.sql)
+
 ### 5.2. Inserción de Datos (DML)
 
 #### Inserción en la tabla Categoría
