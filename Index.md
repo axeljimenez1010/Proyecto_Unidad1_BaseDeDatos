@@ -24,7 +24,7 @@
 | **Unidad** | 1 |
 | **Docente** | Edwin René Guamán Quinche |
 | **Estudiante** | Axel Joao Jiménez Palta |
-| **Fecha** | |
+| **Fecha** | 09/11/2026 |
 
 ### Resultado de aprendizaje de la unidad
 
@@ -51,9 +51,9 @@ Modelar bases de datos de problemas reales, bajo los principios de solidaridad, 
 
 ## 2. Contexto del problema
 
-La provincia de Loja cuenta con una importante actividad agrícola distribuida entre sus diferentes cantones y sectores. Sin embargo, la información relacionada con la producción de cultivos y los precios del mercado se encuentra dispersa y poco organizada. La falta de una base de datos centralizada dificulta relacionar las cantidades producidas con las variaciones de precios, lo que impide identificar con claridad si los aumentos responden a problemas de producción, condiciones climáticas o factores relacionados con la comercialización.
+La provincia de Loja cuenta con una importante actividad agrícola distribuida entre sus diferentes cantones y sectores. Sin embargo, la información relacionada con la producción de cultivos y los precios del mercado se encuentra dispersa y poco organizada. Esta situación dificulta relacionar las cantidades producidas con las variaciones de precios, lo que impide identificar con claridad si los aumentos responden a problemas de producción, condiciones climáticas, cambios en los períodos de cosecha o factores relacionados con la comercialización.
+Esta problemática afecta tanto a los agricultores como a los consumidores y a las instituciones que necesitan información confiable para tomar decisiones. Los agricultores enfrentan dificultades para conocer el comportamiento del mercado, mientras que los consumidores se ven afectados por la inestabilidad de los precios. Asimismo, la falta de información organizada sobre los cantones, sectores, tipos de cultivos, períodos de cosecha y volúmenes de producción dificulta el análisis de la actividad agrícola y la identificación de posibles problemas de abastecimiento en la provincia de Loja.
 
-Esta situación afecta tanto a los agricultores como a los consumidores y a las instituciones que necesitan información confiable para tomar decisiones. Por ello, surge la necesidad de diseñar una base de datos relacional que permita organizar la información de los cantones, sectores, categorías de productos, períodos de cosecha y registros de producción. De esta manera, será posible almacenar y consultar datos sobre las cantidades producidas y los precios promedio, facilitando el análisis de la actividad agrícola y contribuyendo a una mejor comprensión del comportamiento del mercado en la provincia de Loja.
 
 ## 3. Objetivos
 
@@ -193,19 +193,37 @@ CREATE TABLE SECTOR (
 #### Inserción en la tabla Categoría
 
 ```sql
--- Agregar INSERT INTO CATEGORIA
+INSERT INTO CATEGORIA (nombre, descripcion, tipo_comercio) VALUES
+    ('Cereales', 'Granos secos como maiz y arroz', 'Consumo Interno'),
+    ('Cultivos Industriales', 'Productos para procesamiento como el cafe', 'Exportacion'),
+    ('Hortalizas', 'Vegetales de ciclo corto', 'Consumo Interno'),
+    ('Leguminosas', 'Granos en vaina como mani y frejol', 'Mixto'),
+    ('Frutas Tropicales', 'Frutas de zonas calidas', 'Consumo Interno');
+
 ```
 
 #### Inserción en la tabla Cantón
 
 ```sql
--- Agregar INSERT INTO CANTON
+INSERT INTO CANTON (nombre, zona_provincial) VALUES
+    ('Zapotillo', 'Fronteriza Sur'),
+    ('Macara', 'Fronteriza Sur'),
+    ('Puyango', 'Occidente'),
+    ('Catamayo', 'Centro-Norte'),
+    ('Loja', 'Centro');
+
 ```
 
 #### Inserción en la tabla Sector
 
 ```sql
--- Agregar INSERT INTO SECTOR
+INSERT INTO SECTOR (nombre, tipo_clima, id_canton) VALUES
+    ('Garza Real', 'Calido Seco', 1),        -- Pertenece a Zapotillo (1)
+    ('Sabiango', 'Calido', 2),               -- Pertenece a Macará (2)
+    ('Alamor', 'Templado', 3),               -- Pertenece a Puyango (3)
+    ('Valle de Casanga', 'Calido Seco', 4),  -- Pertenece a Catamayo (4)
+    ('Vilcabamba', 'Templado', 5);           -- Pertenece a Loja (5)
+
 ```
 
 ---
@@ -214,117 +232,153 @@ CREATE TABLE SECTOR (
 
 ### 6.1. Ejercicio 1 — Selección (σ)
 
-**Enunciado:** Obtener los registros de producción agrícola con nivel de abundancia "Alto" y precio promedio superior a 500 dólares por tonelada.
+**Enunciado:** Se desea obtener el registro completo de todas las transacciones de producción agrícola que reporten un nivel de abundancia "Alto" y cuyo precio promedio de mercado sea superior a los 500 dólares por tonelada.
 
 **Álgebra Relacional:**
 
 ```text
-Agregar expresión algebraica
+σ nivel_abundancia == "Alto" and precio_promedio > 500 (registro_produccion)
 ```
 
 **Consulta SQL:**
 
 ```sql
--- Agregar consulta SQL
+SELECT *
+ FROM REGISTRO_PRODUCCION 
+WHERE nivel_abundancia = 'Alto' AND precio_promedio > 500;
+
 ```
 
 **Resultado esperado:**
 
-*Agregar resultado.*
+Se obtendrán los registros completos (todas sus columnas) correspondientes a las cosechas de Arroz en Macará y Cebolla en Catamayo, que son los únicos que cumplen ambas condiciones económicas y de volumen simultáneamente.
 
 ---
 
 ### 6.2. Ejercicio 2 — Proyección (π) y Producto Cartesiano (×)
 
-**Enunciado:** Relacionar los cantones de la provincia con las categorías agrícolas, obteniendo todas las combinaciones posibles.
+**Enunciado:** ¿Cómo se relacionan de forma cruzada los diferentes cantones de la provincia con cada una de las categorías de productos agrícolas, permitiendo explorar todas las combinaciones posibles de ubicación y tipo de cultivo?
 
 **Álgebra Relacional:**
 
 ```text
-Agregar expresión algebraica
+S1 = ρ nombre ➡ nombre_can (canton)
+S2 = ρ nombre ➡ nombre_cat (categoria)
+π nombre_can, nombre_cat (S1 * S2)
 ```
 
 **Consulta SQL:**
 
 ```sql
--- Agregar consulta SQL
+SELECT 
+    S1.nombre AS nombre_can, 
+    S2.nombre AS nombre_cat
+FROM CANTON S1
+CROSS JOIN CATEGORIA S2;
 ```
 
 **Resultado esperado:**
 
-*Agregar resultado.*
+Se proyectarán exactamente 25 pares de datos, mostrando columnas que relacionan cada ubicación geográfica con cada tipo de cultivo posible (ej. "Zapotillo – Frutas Tropicales").
 
 ---
 
 ### 6.3. Ejercicio 3 — Selección y Proyección (σ + π)
 
-**Enunciado:** Obtener el nombre, variedad y tipo de comercio de los productos pertenecientes a la categoría "Cereales".
+**Enunciado:** Se desea extraer exclusivamente los atributos descriptivos (nombre, variedad y tipo de comercio) de aquellos productos que pertenecen a la categoría de "Cereales" resolviendo la ambigüedad del atributo homónimo.
 
 **Álgebra Relacional:**
 
 ```text
-Agregar expresión algebraica
+C1 = ρ nombre ➡ nombre_cat (categoria)
+π nombre, variedad, tipo_comercio (σ id_categoria == 1 (producto ⋈ C1))
 ```
 
 **Consulta SQL:**
 
 ```sql
--- Agregar consulta SQL
+SELECT P.nombre, P.variedad, C1.tipo_comercio
+FROM PRODUCTO P
+JOIN CATEGORIA C1 ON P.id_categoria = C1.id_categoria
+WHERE P.id_categoria = 1;
+
 ```
 
 **Resultado esperado:**
 
-*Agregar resultado.*
+El conjunto de resultados filtrará las columnas de control y devolverá únicamente los tres atributos solicitados para las instancias que cumplan la condición lógica (Arroz y Maíz Duro).
 
 ---
 
 ### 6.4. Ejercicio 4 — Reunión Natural / JOIN (⋈)
 
-**Enunciado:** Identificar los productos agrícolas cultivados en sectores con clima "Cálido Seco".
+**Enunciado:** Identificar qué productos agrícolas (nombre y variedad) se cultivan en las zonas geográficas tipificadas con un clima "Cálido Seco", cruzando las tablas de catálogo con los registros transaccionales y evitando la colisión de atributos descriptivos.
 
 **Álgebra Relacional:**
 
 ```text
-Agregar expresión algebraica
+S1 = ρ nombre ➡ nombre_sec(sector)
+π nombre, variedad (σ tipo_clima == "Calido Seco" (S1) ⋈ registro_produccion ⋈ producto)
 ```
 
 **Consulta SQL:**
 
 ```sql
--- Agregar consulta SQL
+SELECT P.nombre, P.variedad 
+FROM SECTOR S1
+JOIN REGISTRO_PRODUCCION RP ON S1.id_sector = RP.id_sector
+JOIN PRODUCTO P ON RP.id_producto = P.id_producto
+WHERE S1.tipo_clima = 'Cálido Seco';
+
 ```
 
 **Resultado esperado:**
 
-*Agregar resultado.*
+Se resolverán las relaciones de claves foráneas para devolver únicamente los nombres de los cultivos sembrados en dicho microclima (el Maíz en Garza Real y la Cebolla en Casanga).
 
 ---
 
 ### 6.5. Ejercicio 5 — División (÷)
 
-**Enunciado:** Identificar los productos agrícolas cosechados y registrados en los sectores definidos para la consulta.
+**Enunciado:** ¿Cuáles son los productos agrícolas que se han logrado cosechar y registrar en absolutamente todos los sectores disponibles en el Sistema?
 
 **Álgebra Relacional:**
 
 ```text
-Agregar expresión algebraica
+S1 = σ id_sector == 1 or id_sector == 4 (sector)
+π id_producto, id_sector (registro_produccion) ÷ π id_sector (S1)
 ```
 
 **Consulta SQL:**
 
 ```sql
--- Agregar consulta SQL
+SELECT P.nombre, P.variedad
+FROM PRODUCTO P
+WHERE NOT EXISTS (
+    SELECT S1.id_sector 
+    FROM SECTOR S1
+    WHERE (S1.id_sector = 1 OR S1.id_sector = 4)
+      AND NOT EXISTS (
+          SELECT RP.id_registro 
+          FROM REGISTRO_PRODUCCION RP
+          WHERE RP.id_producto = P.id_producto 
+            AND RP.id_sector = S1.id_sector
+      )
+);
+
 ```
 
 **Resultado esperado:**
 
-*Agregar resultado.*
+Se proyectará el identificador del producto (id_producto = 1), correspondiente al Maíz Duro, validando matemáticamente que es el único cultivo registrado de manera simultánea en todos los sectores que componen la relación intermedia S1 (sectores 1 y 4).
 
 ---
 
 ## 7. Conclusiones
 
-*Agregar las conclusiones del informe.*
+* El proceso de modelado conceptual por medio del diagrama E-R y su transformación al modelo relacional, me permitió organizar de manera clara la información agrícola de la provincia de Loja, una de las principales dificultades fue identificar correctamente las relaciones y cardinalidades entre las entidades, especialmente al conectar los datos geo-gráficos con los productos agrícolas resolver este desafío me permitió reducir la redun-dancia de información y establecer una estructura adecuada para la base de datos.
+* La implementación de la base de datos mediante SQL me permitió llevar a la práctica los conocimientos sobre normalizar e integrar datos. Durante este proceso se comprendí la importancia de definir correctamente los tipos de datos, las claves primarias y forá-neas, así como el orden de inserción de los registros, los errores encontrados durante la ejecución ayudaron a identificar problemas en la estructura y reforzar la importancia de mantener la consistencia de la información.
+* El uso del álgebra relacional me permitió comprender mejor cómo se construyen las consultas antes de llevarlas a SQL. Al utilizar Relational, aplique operaciones de selec-ción, proyección, producto cartesiano, reunión natural, división y renombramiento. Las consultas que relacionaban varias tablas fueron muy útiles ya que me permitieron resol-ver ambigüedades entre atributos y obtener información relevante sobre la distribución y diversidad de cultivos en las distintas zonas agrícolas.
 
 ---
 
